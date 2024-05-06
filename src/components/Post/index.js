@@ -1,8 +1,16 @@
 import React, { useEffect } from "react";
+import { Row, Col } from "reactstrap";
+import { LoadingData } from "@components";
+import { initials } from "@utils";
 import "./styles.scss";
-import { Col } from "reactstrap";
 
-const PostList = ({ data = [], getData }) => {
+const PostList = ({
+  userData = {},
+  data = [],
+  getData,
+  loading = false,
+  error = false,
+}) => {
   useEffect(() => {
     if (data?.length === 0) {
       getData();
@@ -10,43 +18,36 @@ const PostList = ({ data = [], getData }) => {
   }, []);
   return (
     <div className="post-list">
-      <Row md={2}>
-        {data?.map((e) => {
-          return (
-            <Col>
-              <div class="post-card">
-                <div class="post-header">
-                  <img
-                    src="profile-picture.jpg"
-                    alt="Profile Picture"
-                    class="profile-picture"
-                  />
-                  <div class="user-info">
-                    <span class="username">John Doe</span>
-                    <span class="handle">@johndoe</span>
+      {loading || error ? (
+        <LoadingData fetchData={getData} loadingFailed={error} />
+      ) : (
+        <Row md={2}>
+          {data?.map((e) => {
+            return (
+              <Col>
+                <div class="post-card">
+                  <div class="post-header">
+                    <div class="profile-picture bg-primary">
+                      {userData?.name ? initials(userData?.name) : "-"}
+                    </div>
+                    <div class="user-info">
+                      <span class="username">{userData?.name}</span>
+                      <span class="handle"> - {userData?.username}</span>
+                    </div>
+                  </div>
+                  <div class="post-content">
+                    <p>{e?.body || "-"}</p>
+                  </div>
+                  <div class="post-footer">
+                    <button class="action-btn">Edit</button>
+                    <button class="action-btn text-danger">Delete</button>
                   </div>
                 </div>
-                <div class="post-content">
-                  <p>
-                    This is the post content. It can be of any length and may
-                    contain text, links, images, and other media.
-                  </p>
-                  <img
-                    src="post-image.jpg"
-                    alt="Post Image"
-                    class="post-image"
-                  />
-                </div>
-                <div class="post-footer">
-                  <button class="action-btn">Like</button>
-                  <button class="action-btn">Comment</button>
-                  <button class="action-btn">Share</button>
-                </div>
-              </div>
-            </Col>
-          );
-        })}
-      </Row>
+              </Col>
+            );
+          })}
+        </Row>
+      )}
     </div>
   );
 };

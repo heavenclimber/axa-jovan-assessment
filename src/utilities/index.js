@@ -1,3 +1,4 @@
 import { notification } from "./notif";
+import { initials } from "./initials";
 
-export { notification };
+export { notification, initials };

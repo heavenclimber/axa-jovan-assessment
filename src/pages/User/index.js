@@ -18,6 +18,8 @@ const UserPage = ({}) => {
   const [loadingAlbum, setLoadingAlbum] = useState(false);
 
   const [error, setError] = useState(false);
+  const [errorPost, setErrorPost] = useState(false);
+  const [errorAlbum, setErrorAlbum] = useState(false);
 
   const getData = async () => {
     const failed = () => {
@@ -54,13 +56,13 @@ const UserPage = ({}) => {
         type: "error",
         text: "Something wrong, please try again",
       });
-      setError(true);
+      setErrorPost(true);
     };
     try {
       const urlPost = `/posts?userId=${id}`;
 
       setLoadingPost(true);
-      setError(false);
+      setErrorPost(false);
       const response = await api.get(urlPost, {});
       if (response.status === 200) {
         setLoadingPost(false);
@@ -81,13 +83,13 @@ const UserPage = ({}) => {
         type: "error",
         text: "Something wrong, please try again",
       });
-      setError(true);
+      setErrorAlbum(true);
     };
     try {
-      const urlPost = `/albums?userId=${id}`;
+      const urlAlbum = `/albums?userId=${id}`;
       setLoadingAlbum(true);
-      setError(false);
-      const response = await api.get(urlPost, {});
+      setErrorAlbum(false);
+      const response = await api.get(urlAlbum, {});
       if (response.status === 200) {
         setLoadingAlbum(false);
         setAlbumData(response?.data);
@@ -123,10 +125,22 @@ const UserPage = ({}) => {
               <Tab>Album</Tab>
             </TabList>
             <TabPanel>
-              <PostList getData={getDataPost} data={postData} />
+              <PostList
+                userData={userData}
+                getData={getDataPost}
+                data={postData}
+                loading={loadingPost}
+                error={errorPost}
+              />
             </TabPanel>
             <TabPanel>
-              <AlbumList getData={getDataAlbum} data={albumData} />
+              <AlbumList
+                userData={userData}
+                getData={getDataAlbum}
+                data={albumData}
+                loading={loadingAlbum}
+                error={errorAlbum}
+              />
             </TabPanel>
           </Tabs>
         </CardBody>

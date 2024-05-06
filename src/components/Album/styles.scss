@@ -1,0 +1,31 @@
+.album-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    .album {
+        width: 300px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .album-icon {
+        font-size: 48px; /* Adjust icon size as needed */
+        display: block;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .album-info {
+        padding: 20px;
+    }
+
+    .album-title {
+        margin-top: 0;
+    }
+
+    .album-description {
+        color: #666;
+    }
+}

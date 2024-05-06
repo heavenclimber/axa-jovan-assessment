@@ -1,19 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, Col } from "reactstrap";
+import { initials } from "@utils";
 
 const UserList = ({ data = [] }) => {
   const navigate = useNavigate();
-
-  const initials = (name = "") => {
-    name = name?.split(" ").filter((e) => e.length > 0);
-    if (name?.length > 1) {
-      return `${name[0][0]}${name[1][0]}`.toUpperCase();
-    } else {
-      name = name[0];
-      return `${name[0]}${name[name.length - 1]}`.toUpperCase();
-    }
-  };
 
   const toUserDetail = (e = {}) => {
     navigate(`/user/${e?.id}`);
