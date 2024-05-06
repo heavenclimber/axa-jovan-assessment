@@ -1,0 +1,35 @@
+.photo-card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .photo-card {
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: box-shadow 0.3s ease; /* Transition for box-shadow */
+    }
+    .photo-card:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Elevated shadow on hover */
+    }
+
+    .photo-thumbnail {
+        width: 100px; /* Adjust thumbnail size as needed */
+        height: auto;
+        border-radius: 8px 0 0 8px;
+    }
+
+    .photo-details {
+        padding: 16px;
+    }
+
+    .photo-title {
+        margin-top: 0;
+    }
+
+    .photo-description {
+        color: #666;
+    }
+}

@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { api } from "@utils/api";
 import { notification } from "@utils";
-import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import { Card, CardBody, CardHeader } from "reactstrap";
 import { LoadingData } from "@components";
-import { AlbumList, PostList } from "@components";
+import { AlbumList, PostList, NavigationContent } from "@components";
 
 const UserPage = ({}) => {
   const { id } = useParams();
+  const query = new URLSearchParams(window.location.search);
+  const navigate = useNavigate();
+  const [navProspect, setNavProspect] = useState(query.get("tab") || "posts");
+
   const [userData, setUserData] = useState({});
   const [postData, setPostData] = useState([]);
   const [albumData, setAlbumData] = useState([]);
@@ -20,6 +24,37 @@ const UserPage = ({}) => {
   const [error, setError] = useState(false);
   const [errorPost, setErrorPost] = useState(false);
   const [errorAlbum, setErrorAlbum] = useState(false);
+
+  const navMap = [
+    {
+      navId: "post",
+      onClick: () => {
+        setNavProspect("post");
+        navigate({
+          pathname: `/user/${id}`,
+          search: `tab=post`,
+          replace: true,
+        });
+      },
+      label: "Posts",
+    },
+    {
+      navId: "album",
+      onClick: () => {
+        setNavProspect("album");
+        navigate({
+          pathname: `/user/${id}`,
+          search: `tab=album`,
+          replace: true,
+        });
+      },
+      label: "Albums",
+    },
+  ];
+
+  useEffect(() => {
+    setNavProspect(query.get("tab"));
+  }, [query]);
 
   const getData = async () => {
     const failed = () => {
@@ -105,6 +140,30 @@ const UserPage = ({}) => {
     getData();
   }, []);
 
+  const renderContent = () => {
+    if (navProspect === "post") {
+      return (
+        <PostList
+          userData={userData}
+          getData={getDataPost}
+          data={postData}
+          loading={loadingPost}
+          error={errorPost}
+        />
+      );
+    } else if (navProspect === "album") {
+      return (
+        <AlbumList
+          userData={userData}
+          getData={getDataAlbum}
+          data={albumData}
+          loading={loadingAlbum}
+          error={errorAlbum}
+        />
+      );
+    }
+  };
+
   return (
     <div className="p-4">
       {(loading || error) && (
@@ -119,30 +178,8 @@ const UserPage = ({}) => {
           <span className="text-secondary"> {userData?.email}</span>
         </CardHeader>
         <CardBody>
-          <Tabs>
-            <TabList>
-              <Tab>Post</Tab>
-              <Tab>Album</Tab>
-            </TabList>
-            <TabPanel>
-              <PostList
-                userData={userData}
-                getData={getDataPost}
-                data={postData}
-                loading={loadingPost}
-                error={errorPost}
-              />
-            </TabPanel>
-            <TabPanel>
-              <AlbumList
-                userData={userData}
-                getData={getDataAlbum}
-                data={albumData}
-                loading={loadingAlbum}
-                error={errorAlbum}
-              />
-            </TabPanel>
-          </Tabs>
+          <NavigationContent navMap={navMap} navProspect={navProspect} />
+          {renderContent()}
         </CardBody>
       </Card>
     </div>
