@@ -317,7 +317,8 @@ const PostList = ({
                     </div>
                     <div class="post-footer">
                       <button
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.stopPropagation();
                           openModalEdit(e);
                         }}
                         class="action-btn"
@@ -326,7 +327,8 @@ const PostList = ({
                       </button>
                       <button
                         class="action-btn text-danger"
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.stopPropagation();
                           openModalDelete(e);
                         }}
                       >
