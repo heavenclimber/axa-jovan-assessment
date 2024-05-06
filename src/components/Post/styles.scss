@@ -1,0 +1,60 @@
+.post-list {
+    .post-card {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+
+    .post-header {
+        display: flex;
+        align-items: center;
+    }
+
+    .profile-picture {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        margin-right: 12px;
+    }
+
+    .user-info {
+        font-weight: bold;
+    }
+
+    .username {
+        color: #333;
+    }
+
+    .handle {
+        color: #666;
+        font-size: 0.8em;
+    }
+
+    .post-content {
+        margin-top: 12px;
+    }
+
+    .post-image {
+        max-width: 100%;
+        margin-top: 8px;
+    }
+
+    .post-footer {
+        margin-top: 12px;
+    }
+
+    .action-btn {
+        background-color: transparent;
+        border: none;
+        color: #666;
+        font-weight: bold;
+        cursor: pointer;
+        margin-right: 16px;
+    }
+
+    .action-btn:hover {
+        color: #333;
+    }
+}

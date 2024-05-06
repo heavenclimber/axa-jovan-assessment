@@ -1,1 +1,1 @@
-export const BASE_URL = "https://api.mantis.id/api/v1";
+export const BASE_URL = "https://jsonplaceholder.typicode.com";

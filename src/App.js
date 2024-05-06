@@ -7,6 +7,7 @@ import AppRoutes from "@routes";
 import { ToastContainer, toast } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
 
 function App() {
   return (
