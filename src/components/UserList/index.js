@@ -15,7 +15,12 @@ const UserList = ({ data = [] }) => {
       {data?.map((e) => {
         return (
           <Col className="mb-4">
-            <Card className="p-3 up-user-card" onClick={toUserDetail(e)}>
+            <Card
+              className="p-3 up-user-card"
+              onClick={() => {
+                toUserDetail(e);
+              }}
+            >
               <div className="d-flex align-items-center">
                 <div className="avatar-icon-initial bg-primary rounded-circle shadow-sm-dark text-white mr-4">
                   {initials(e?.name)}

@@ -11,7 +11,7 @@ const UserPage = ({}) => {
   const { id } = useParams();
   const query = new URLSearchParams(window.location.search);
   const navigate = useNavigate();
-  const [navProspect, setNavProspect] = useState(query.get("tab") || "posts");
+  const [navProspect, setNavProspect] = useState(query.get("tab") || "post");
 
   const [userData, setUserData] = useState({});
   const [postData, setPostData] = useState([]);
@@ -53,7 +53,7 @@ const UserPage = ({}) => {
   ];
 
   useEffect(() => {
-    setNavProspect(query.get("tab"));
+    setNavProspect(query.get("tab") || "post");
   }, [query]);
 
   const getData = async () => {

@@ -1,0 +1,19 @@
+.prompt-inventory {
+    .prompt-title {
+        font-weight: 700;
+        font-size: 20px;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+    .prompt-subtext {
+        font-weight: 400;
+        font-size: 14px;
+        span {
+            color: #dc3024;
+            font-weight: 700;
+        }
+    }
+    .prompt-button {
+        margin-top: 24px;
+    }
+}
