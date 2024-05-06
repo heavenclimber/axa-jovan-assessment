@@ -1,0 +1,66 @@
+.comment-bubble-card {
+    width: 90%;
+    margin: 20px;
+}
+
+.comment {
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.comment-header {
+    margin-bottom: 10px;
+}
+
+.comment-name {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.comment-email {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.comment-content {
+    margin: 0;
+    color: #333;
+}
+
+.comment-footer {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.textarea-comment {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    resize: none;
+    box-sizing: border-box;
+    background-color: #f5f8fa;
+    color: #000;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+}
+
+.textarea-comment::placeholder {
+    color: #999;
+}
+
+/* Hover effect */
+.textarea-comment:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Focus effect */
+.textarea-comment:focus {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}

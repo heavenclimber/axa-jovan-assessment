@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Row, Col, Button, Input } from "reactstrap";
 import { api } from "@utils/api";
 import { notification } from "@utils";
@@ -13,6 +14,8 @@ const PostList = ({
   loading = false,
   error = false,
 }) => {
+  const navigate = useNavigate();
+
   const [modalAdd, setModalAdd] = useState(false);
   const [newPost, setNewPost] = useState("");
   const [newPostTitle, setNewPostTitle] = useState("");
@@ -33,6 +36,10 @@ const PostList = ({
       getData();
     }
   }, []);
+
+  const toPostDetail = (e = {}) => {
+    navigate(`/post/${e?.id}`);
+  };
 
   const addPost = async () => {
     const failed = () => {
@@ -287,7 +294,12 @@ const PostList = ({
             {data?.map((e) => {
               return (
                 <Col>
-                  <div class="post-card">
+                  <div
+                    class="post-card"
+                    onClick={() => {
+                      toPostDetail(e);
+                    }}
+                  >
                     <div class="post-header">
                       <div class="profile-picture bg-primary">
                         {userData?.name ? initials(userData?.name) : "-"}
